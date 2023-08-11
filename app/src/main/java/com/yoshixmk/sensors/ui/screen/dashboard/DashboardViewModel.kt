@@ -1,7 +1,8 @@
 package com.yoshixmk.sensors.ui.screen.dashboard
 
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import androidx.lifecycle.ViewModel
-import com.yoshixmk.sensors.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -9,16 +10,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor() : ViewModel() {
-    private val _greetingsRes = MutableStateFlow(R.string.label_hello_world)
-    val greetingsRes: StateFlow<Int> = _greetingsRes
+    private val _sensors = MutableStateFlow(emptyList<Sensor>())
+    val sensors: StateFlow<List<Sensor>> = _sensors
 
-    fun onClickMeClicked() {
-        // Toggling message
-        val newGreetingsRes = if (greetingsRes.value == R.string.label_hello_world) {
-            R.string.label_hello_compose
-        } else {
-            R.string.label_hello_world
-        }
-        _greetingsRes.value = newGreetingsRes
+    fun onClickMeClicked(sensorManager: SensorManager) {
+        _sensors.value = sensorManager.getSensorList(Sensor.TYPE_ALL)
     }
 }

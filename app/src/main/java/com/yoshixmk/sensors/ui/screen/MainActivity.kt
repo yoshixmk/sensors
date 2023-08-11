@@ -1,5 +1,7 @@
 package com.yoshixmk.sensors.ui.screen
 
+import android.content.Context
+import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var sensorManager: SensorManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
     @Composable
@@ -53,7 +57,7 @@ class MainActivity : ComponentActivity() {
 
             // Dashboard
             composable(Screen.Dashboard.route) {
-                DashboardScreen()
+                DashboardScreen(sensorManager)
             }
         }
     }

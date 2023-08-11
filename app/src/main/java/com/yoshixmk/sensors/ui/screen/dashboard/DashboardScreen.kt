@@ -1,8 +1,14 @@
 package com.yoshixmk.sensors.ui.screen.dashboard
 
-import androidx.compose.foundation.layout.*
+import android.hardware.SensorManager
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -16,27 +22,26 @@ import com.yoshixmk.sensors.R
 
 @Composable
 fun DashboardScreen(
+    sensorManager: SensorManager,
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
-
-
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Greetings
-        val greetings by viewModel.greetingsRes.collectAsState()
-        Text(
-            text = stringResource(id = greetings),
-            style = MaterialTheme.typography.h3
-        )
+        val sensors by viewModel.sensors.collectAsState()
+        sensors.map {
+            Text(text = it.name)
+        }
 
         Spacer(modifier = Modifier.height(30.dp))
 
         // Action : Click Me
         Button(onClick = {
-            viewModel.onClickMeClicked()
+            viewModel.onClickMeClicked(sensorManager)
         }) {
             Text(text = stringResource(id = R.string.action_click_me))
         }
