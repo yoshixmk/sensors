@@ -3,23 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".App"
+        android:name="com.yoshixmk.sensors.App"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ComposeAndroidTemplate">
+        android:theme="@style/Theme.sensors">
         <profileable
             android:shell="true"
             tools:targetApi="29" />
 
         <activity
-            android:name=".ui.screen.MainActivity"
+            android:name="com.yoshixmk.sensors.ui.screen.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.ComposeAndroidTemplate">
+            android:theme="@style/Theme.sensors">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
