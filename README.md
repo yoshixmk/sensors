@@ -1,11 +1,18 @@
 # sensors
 
-Try it.
+View all built-in sensors in your smartphone and check their current values
+
+## Try it
+
+| Sensor initialized                                          | Check selected sensor values                                          |
+|-------------------------------------------------------------|-----------------------------------------------------------------------|
+| ![sensor name list image](docs/images/sensor_name_list.jpg) | ![checking sensor value image](docs/images/checking_sensor_value.jpg) |
 
 ## 📝 License
 
 ```
-Copyright © 2023 - theapache64
+Copyright © 2023 - yoshixmk
+Use template which created by theapache64
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

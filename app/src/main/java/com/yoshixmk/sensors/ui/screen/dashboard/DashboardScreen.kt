@@ -32,9 +32,23 @@ fun DashboardScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        val sensorValues by viewModel.checkingValues.collectAsState()
+        sensorValues.forEachIndexed { index, fl ->
+            Text(
+                text = "[$index] $fl",
+                        modifier = Modifier.align(Alignment.Start)
+            )
+        }
+
         val sensors by viewModel.sensors.collectAsState()
         sensors.map {
-            Text(text = it.name)
+            Button(onClick = { viewModel.onClickSensor(sensorManager, it) }) {
+                Column {
+                    Text(text = it.name)
+                    Text(text = "type: " + it.stringType)
+                }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
         }
 
         Spacer(modifier = Modifier.height(30.dp))
